@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import type { ChatMessage } from '../types';
 import { queryRagApi } from '../services/ragService';
@@ -41,9 +40,59 @@ const ChatInterface: React.FC = () => {
       });
     } catch (error) {
       console.error("Error querying RAG API:", error);
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Wystąpił nieznany błąd.';
+
+      const detailedErrorMessage = `Przepraszam, wystąpił krytyczny błąd komunikacji.
+
+**Komunikat błędu:**
+${errorMessage}
+
+---
+
+To najprawdopodobniej problem z konfiguracją Twojego serwera backend, a nie błąd w aplikacji czatu. Oto najczęstsza przyczyna i rozwiązanie:
+
+**Problem: Brak konfiguracji CORS w backendzie (np. FastAPI)**
+Przeglądarka ze względów bezpieczeństwa blokuje zapytania do serwera, jeśli nie zezwoli on na połączenia z innych "źródeł" (origin).
+
+**✅ Rozwiązanie (dla FastAPI w Pythonie):**
+
+1.  Otwórz plik \`main.py\` swojego serwera.
+2.  Upewnij się, że masz dodany poniższy kod:
+
+    \`\`\`python
+    from fastapi import FastAPI
+    from fastapi.middleware.cors import CORSMiddleware
+
+    app = FastAPI()
+
+    # Lista dozwolonych źródeł
+    origins = [
+        "*",  # Na czas dewelopmentu, zezwól na wszystko
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    \`\`\`
+
+3.  Zapisz plik i **zrestartuj serwer** (\`uvicorn\`).
+
+---
+Jeśli to nie pomoże, sprawdź również:
+- Czy serwer backendowy jest na pewno uruchomiony?
+- Czy serwer nasłuchuje na adresie \`http://127.0.0.1:8000\`?
+`;
+      
       addMessage({
         role: 'assistant',
-        content: 'Przepraszam, wystąpił błąd podczas przetwarzania Twojego zapytania.',
+        content: detailedErrorMessage,
+        isError: true,
       });
     } finally {
       setIsLoading(false);

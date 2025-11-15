@@ -11,6 +11,7 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   sources?: Source[];
+  isError?: boolean;
 }
 
 export interface RagApiResponse {
