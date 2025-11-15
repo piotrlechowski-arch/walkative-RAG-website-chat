@@ -45,7 +45,30 @@ cp .env.example .env
 
 ### Frontend
 
-(Instrukcje do dodania po skonfigurowaniu frontendu)
+1. **Przejdź do folderu frontend:**
+```bash
+cd frontend
+```
+
+2. **Zainstaluj zależności:**
+```bash
+npm install
+```
+
+3. **Skonfiguruj zmienne środowiskowe:**
+```bash
+cp .env.example .env.local
+# Edytuj .env.local i ustaw VITE_RAG_API_URL
+```
+
+4. **Uruchom frontend:**
+```bash
+npm run dev
+```
+
+Frontend będzie dostępny pod adresem: `http://localhost:3000`
+
+Szczegółowe instrukcje w [frontend/README.md](frontend/README.md)
 
 ## Konfiguracja bazy danych
 
@@ -90,7 +113,15 @@ Backend będzie dostępny pod adresem: `http://localhost:8000`
 
 ### Frontend
 
-(Instrukcje do dodania)
+Zobacz [frontend/README.md](frontend/README.md) dla szczegółowych instrukcji.
+
+Szybki start:
+```bash
+cd frontend
+npm install
+cp .env.example .env.local
+npm run dev
+```
 
 ### Tunel HTTPS (dla developmentu z AI Studio)
 
