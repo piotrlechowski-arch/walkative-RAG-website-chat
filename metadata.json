@@ -1,5 +1,0 @@
-{
-  "name": "RAG Chat with Website Content",
-  "description": "A chat interface for a Retrieval-Augmented Generation (RAG) system. Ask questions about your website content stored in a PostgreSQL database and get answers with sources.",
-  "requestFramePermissions": []
-}
