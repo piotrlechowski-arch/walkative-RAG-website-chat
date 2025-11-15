@@ -1,6 +1,12 @@
 # Walkative RAG System
 
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
 System RAG (Retrieval-Augmented Generation) dla bazy danych walkative_local z użyciem Google Gemini API i pgvector.
+
+**View your app in AI Studio:** https://ai.studio/apps/drive/1lLQ4OX04Vi6ZhJUC_p8dyGe_aXJs_8Qc
 
 ## Struktura projektu
 
@@ -12,14 +18,16 @@ walkative-rag/
 │   ├── database.py      # Połączenie z bazą danych
 │   ├── rag.py           # Logika RAG (wyszukiwanie + generowanie odpowiedzi)
 │   └── models.py        # Modele Pydantic
-├── frontend/            # Frontend (do dodania)
+├── frontend/            # Frontend React + TypeScript
+│   ├── components/      # Komponenty React
+│   ├── services/        # Serwisy API
+│   └── ...
 ├── .env                 # Zmienne środowiskowe (utwórz na podstawie .env.example)
 ├── .env.example         # Przykładowa konfiguracja
 ├── requirements.txt     # Zależności Python
 ├── add_embedding_columns.py  # Skrypt do dodawania kolumn embedding
 ├── generate_embeddings.py    # Skrypt do generowania embeddingów
-├── check_embedding_progress.py  # Skrypt do monitorowania postępu
-└── README.md            # Ten plik
+└── check_embedding_progress.py  # Skrypt do monitorowania postępu
 ```
 
 ## Instalacja
@@ -131,7 +139,7 @@ Jeśli frontend działa w Google Cloud, użyj cloudflared do utworzenia tunelu H
 cloudflared tunnel --url http://127.0.0.1:8000
 ```
 
-Użyj wygenerowanego URL w konfiguracji frontendu.
+Użyj wygenerowanego URL w konfiguracji frontendu (`frontend/.env.local`).
 
 ## Endpointy API
 
@@ -151,6 +159,7 @@ Użyj wygenerowanego URL w konfiguracji frontendu.
 - ✅ REST API z FastAPI
 - ✅ Automatyczna dokumentacja API (Swagger)
 - ✅ CORS skonfigurowany dla Google Cloud origins
+- ✅ Frontend React + TypeScript z interfejsem czatu
 
 ## Uwagi techniczne
 
@@ -183,18 +192,8 @@ Użyj wygenerowanego URL w konfiguracji frontendu.
 
 Projekt używa struktury monorepo z osobnymi folderami dla backendu i frontendu:
 - `backend/` - Kod Python/FastAPI
-- `frontend/` - Kod frontendu (do dodania)
+- `frontend/` - Kod React/TypeScript
 
-### Git workflow
+### Szybki start
 
-1. Utwórz nowe repozytorium na GitHub
-2. Dodaj remote:
-```bash
-git remote add origin https://github.com/TwojaNazwa/walkative-rag.git
-```
-3. Dodaj pliki i commit:
-```bash
-git add .
-git commit -m "Initial commit: Backend RAG system"
-git push -u origin main
-```
+Zobacz [QUICKSTART.md](QUICKSTART.md) dla szybkiego przewodnika uruchomienia.
