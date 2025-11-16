@@ -1,9 +1,8 @@
 import type { RagApiResponse } from '../types';
 
-// Adres URL Twojego backendu.
-// Dla developmentu lokalnego użyj: 'http://127.0.0.1:8000/api/query'
-// Dla AI Studio użyj tunelu Cloudflare (uruchom: cloudflared tunnel --url http://127.0.0.1:8000)
-const RAG_API_URL = import.meta.env.VITE_RAG_API_URL || 'http://127.0.0.1:8000/api/query';
+// Adres URL Twojego backendu. Zmieniono na publiczny adres tunelu Cloudflare,
+// aby umożliwić komunikację z serwerem.
+const RAG_API_URL = 'https://attach-kinase-coupons-rain.trycloudflare.com/api/query';
 
 /**
  * Wysyła zapytanie do prawdziwego backendu RAG.
