@@ -2,7 +2,7 @@ import type { RagApiResponse, ChatMessage } from '../types';
 
 // Adres URL Twojego backendu. Zmieniono na publiczny adres tunelu Cloudflare,
 // aby umożliwić komunikację z serwerem.
-const RAG_API_URL = 'https://sean-bangkok-waiver-float.trycloudflare.com/api/query';
+const RAG_API_URL = 'https://bulk-informal-mechanism-anna.trycloudflare.com/api/query';
 
 /**
  * Wysyła zapytanie do prawdziwego backendu RAG, uwzględniając historię konwersacji.
