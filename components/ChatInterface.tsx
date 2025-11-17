@@ -32,7 +32,8 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await queryRagApi(userMessageContent);
+      // Przekazujemy całą historię rozmów (messages) wraz z nowym zapytaniem
+      const response = await queryRagApi(userMessageContent, messages);
       addMessage({
         role: 'assistant',
         content: response.answer,

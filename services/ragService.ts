@@ -1,20 +1,19 @@
-import type { RagApiResponse } from '../types';
+import type { RagApiResponse, ChatMessage } from '../types';
 
 // Adres URL Twojego backendu. Zmieniono na publiczny adres tunelu Cloudflare,
 // aby umożliwić komunikację z serwerem.
-const RAG_API_URL = 'https://attach-kinase-coupons-rain.trycloudflare.com/api/query';
+const RAG_API_URL = 'https://joan-quarters-sheffield-shipments.trycloudflare.com/api/query';
 
 /**
- * Wysyła zapytanie do prawdziwego backendu RAG.
- *
- * Ta funkcja zastępuje poprzednią, mockową implementację.
+ * Wysyła zapytanie do prawdziwego backendu RAG, uwzględniając historię konwersacji.
  *
  * @param query - Pytanie użytkownika.
+ * @param history - Tablica poprzednich wiadomości w konwersacji.
  * @returns Obietnica, która rozwiązuje się do obiektu RagApiResponse.
  * @throws Błąd, jeśli komunikacja z serwerem się nie powiedzie.
  */
-export const queryRagApi = async (query: string): Promise<RagApiResponse> => {
-  console.log(`Sending query to RAG backend: "${query}" at ${RAG_API_URL}`);
+export const queryRagApi = async (query: string, history: ChatMessage[]): Promise<RagApiResponse> => {
+  console.log(`Sending query to RAG backend: "${query}" with ${history.length} history messages at ${RAG_API_URL}`);
 
   try {
     const response = await fetch(RAG_API_URL, {
@@ -22,8 +21,8 @@ export const queryRagApi = async (query: string): Promise<RagApiResponse> => {
       headers: {
         'Content-Type': 'application/json',
       },
-      // Backend powinien oczekiwać obiektu JSON z kluczem 'query'
-      body: JSON.stringify({ query }),
+      // Backend powinien oczekiwać obiektu JSON z kluczami 'query' oraz 'history'
+      body: JSON.stringify({ query, history }),
     });
 
     if (!response.ok) {
